@@ -1,33 +1,34 @@
+import 'package:blackjack_ui/card.dart';
 import 'package:flutter/material.dart';
 
-
-class HomePage extends StatefulWidget{
-
-    @override
-    _HomePageState createState()=> _HomePageState();
-
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>{
+class _HomePageState extends State<HomePage> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.green[800],
-      body:Center(
-        child:Container(
-          child:Column(  
-          mainAxisAlignment:MainAxisAlignment.center,
-          children:[
-            Container(
-              color:Colors.white,
-              height:120,
-              width:70
-            ),
-          ],
+      backgroundColor: Colors.green[800],
+      body: Center(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Cardback(), Cardback()],
+              ),
+              Cardback(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Cardback(), Cardback()],
+              ),
+            ],
           ),
         ),
-      )
+      ),
     );
-      
-  } 
+  }
 }
