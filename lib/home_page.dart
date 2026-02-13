@@ -1,4 +1,5 @@
 import 'package:blackjack_ui/card.dart';
+import 'package:blackjack_ui/cardTemplate.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,12 +19,12 @@ class _HomePageState extends State<HomePage> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Cardback(), Cardback()],
+                children: [cardTemplate(), cardTemplate()],
               ),
-              Cardback(),
+              cardTemplate(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Cardback(), Cardback()],
+                children: [cardTemplate(), cardTemplate()],
               ),
             ],
           ),

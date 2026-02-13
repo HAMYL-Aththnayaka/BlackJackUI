@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 
-class MyCard extends StatelessWidget {
+class cardTemplate extends StatelessWidget{
+final suit;
+final color;
+final number;
 
-  final suit;
-  final color;
-  final number;
-  
-  
-  MyCard({
-    this.suit,
-    this.color,
-    this.number,
-  });
-
+cardTemplate({
+  this.suit,
+  this.color,
+  this.number,
+});
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
+  Widget build(BuildContext context){
+    return Container(
+      child:  Padding(
       padding: const EdgeInsets.all(8.0),
       child: ClipRRect(
         borderRadius:BorderRadius.circular(10),
@@ -28,6 +26,8 @@ class MyCard extends StatelessWidget {
         child:Image.asset('assets/Bjs.png')
         ),
         ),
+    ),
     );
   }
+
 }
