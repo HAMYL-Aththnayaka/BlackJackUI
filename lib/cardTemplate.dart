@@ -23,7 +23,9 @@ cardTemplate({
         color: Colors.white, 
         height: 125, 
         width: 98,
-        child:Image.asset('assets/Bjs.png')
+        child:Center(
+          child:Text('❤️'),
+        )
         ),
         ),
     ),
