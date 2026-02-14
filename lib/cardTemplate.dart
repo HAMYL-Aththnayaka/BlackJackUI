@@ -1,3 +1,6 @@
+import 'dart:math' as angle;
+
+import 'package:blackjack_ui/suits.dart';
 import 'package:flutter/material.dart';
 
 class cardTemplate extends StatelessWidget {
@@ -21,16 +24,34 @@ class cardTemplate extends StatelessWidget {
             width: 98,
             child: Center(
               child: Column(
+                mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                 children: [
                   Row(
                     children: [
-                      Text('', 
+                      Text(number, 
                       style: TextStyle(
-                        fontSize: 40.0
+                        fontWeight:FontWeight.bold,
+                        fontSize: 15.0,
+                        color:color,
                         )
-                       )
+                       ),
                       ]
                     ),
+                       suit,
+                       Transform.rotate(
+                        angle: angle.pi,
+                        child:Row(
+                    children: [
+                      Text(number, 
+                      style: TextStyle(
+                        fontWeight:FontWeight.bold,
+                        fontSize: 15.0,
+                        color:color,
+                        )
+                       ),
+                      ]
+                    ),
+                       ),
                 ],
               ),
             ),
