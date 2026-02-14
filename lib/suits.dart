@@ -5,7 +5,7 @@ Widget Heart(){
     '❤️' ,
     style:TextStyle(
       color:Colors.red[800],
-      fontSize:20.0
+      fontSize:40.0
     ));
 }
 Widget Diamond(){
@@ -13,7 +13,7 @@ Widget Diamond(){
     '♦️' ,
     style:TextStyle(
       color:Colors.red[800],
-      fontSize:20.0
+      fontSize:40.0
     ));
 }
 Widget Spades(){
@@ -21,7 +21,7 @@ Widget Spades(){
     '♠️' ,
     style:TextStyle(
       color:const Color.fromARGB(255, 0, 0, 0),
-      fontSize:20.0
+      fontSize:40.0
     ));
 }
 Widget Clover(){
@@ -29,6 +29,6 @@ Widget Clover(){
     '🍀' ,
     style:TextStyle(
       color:Color.fromARGB(255, 8, 2, 2),
-      fontSize:20.0
+      fontSize:40.0
     ));
 }
