@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [cardTemplate(), cardTemplate()],
               ),
-              cardTemplate(),
+              MyCard(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [cardTemplate(), cardTemplate()],
