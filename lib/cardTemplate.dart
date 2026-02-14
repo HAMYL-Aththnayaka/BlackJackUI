@@ -38,6 +38,7 @@ class cardTemplate extends StatelessWidget {
                       ]
                     ),
                        suit,
+                       
                        Transform.rotate(
                         angle: angle.pi,
                         child:Row(
