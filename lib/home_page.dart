@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+
   late AnimationController _animationController;
   late Animation<double> _animation;
   AnimationStatus _animationStatus = AnimationStatus.dismissed;
@@ -19,11 +20,17 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+
     _animationController = AnimationController(
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 400),
       vsync: this,
     );
-    _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController)
+
+    _animation = Tween<double>(begin: 0.0, end: 1.0)
+        .animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    ))
       ..addListener(() {
         setState(() {});
       })
@@ -33,48 +40,85 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _flipCard() {
+    if (_animationStatus == AnimationStatus.dismissed) {
+      _animationController.forward();
+    } else {
+      _animationController.reverse();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green[800],
       body: Center(
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  cardTemplate(
-                    color: Colors.black,
-                    number: '10',
-                    suit: Clover(),
-                  ),
-                  cardTemplate(
-                    color: Colors.black,
-                    number: '10',
-                    suit: Heart(),
-                  ),
-                ],
-              ),
-              Transform.rotate(angle: angle.pi / 2, child: MyCard()),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  cardTemplate(
-                    color: Colors.black,
-                    number: '10',
-                    suit: Spades(),
-                  ),
-                  cardTemplate(
-                    color: Colors.black,
-                    number: '10',
-                    suit: Diamond(),
-                  ),
-                ],
-              ),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+
+            /// Top Cards
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                cardTemplate(
+                  color: Colors.black,
+                  number: '10',
+                  suit: Clover(),
+                ),
+                cardTemplate(
+                  color: Colors.red,
+                  number: '10',
+                  suit: Heart(),
+                ),
+              ],
+            ),
+
+            /// Flipping Card (Center)
+            getFlippingCard('A', Diamond, Colors.red),
+
+            /// Bottom Cards
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                cardTemplate(
+                  color: Colors.black,
+                  number: '10',
+                  suit: Spades(),
+                ),
+                cardTemplate(
+                  color: Colors.red,
+                  number: '10',
+                  suit: Diamond(),
+                ),
+              ],
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget getFlippingCard(var number, var suit, var color) {
+    return GestureDetector(
+      onTap: _flipCard,
+      child: Transform(
+        alignment: FractionalOffset.center,
+        transform: Matrix4.identity()
+          ..setEntry(3, 2, 0.002)
+          ..rotateY(angle.pi * _animation.value),
+        child: _animation.value >= 0.5
+            ? cardTemplate(
+                color: color,
+                number: number,
+                suit: suit(),
+              )
+            : MyCard(),
       ),
     );
   }
